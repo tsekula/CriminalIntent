@@ -38,7 +38,14 @@ public class CrimeListFragment extends ListFragment{
 
         // Start CrimeActivity
         Intent i = new Intent(getActivity(),CrimeActivity.class);
+        i.putExtra(CrimeFragment.EXTRA_CRIME_ID, c.getId());
         startActivity(i);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 
     private class CrimeAdapter extends ArrayAdapter<Crime> {
